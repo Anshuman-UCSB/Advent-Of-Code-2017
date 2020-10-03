@@ -1,0 +1,37 @@
+can't move into cell with scanner
+t = 0 fails each time cause first scanner starts at 0
+periods:
+2:2
+3:4
+4:6
+(size-1)*2
+
+[s] [ ] [ ]
+0
+
+[ ] [s] [ ]
+1
+
+[ ] [ ] [s]
+2
+
+[ ] [s] [ ]
+3
+
+[s] [ ] [ ]
+4
+
+[ ] [s] [ ]
+5
+
+[ ] [ ] [s]
+6
+
+[ ] [s] [ ]
+7
+
+[s] [ ] [ ]
+8
+
+(time)%(size*2-2) != 0, valid
+time = delay + scanner id
