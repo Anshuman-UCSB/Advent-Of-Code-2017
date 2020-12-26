@@ -15,17 +15,24 @@ parsed = [parse.(Int,[x.match for x in eachmatch(r"\d+", x)]) for x in "input"|>
     end
 end
 p2 = map(x->Set(x), parsed)
-done = false
-while !done
-    done = true
-    for x in p2, i in 1:length(p2)
-        if x∩p2[i]|>!isempty && x≠p2[i]
-            x = x∪p2[i]
-            println("x: ",x)
-            println("y: ",p2[i])
-            deleteat!(p2, i)
-            done = false
-            break
+groups = []
+for i in p2
+    # println("trying to find spot for ", i)
+    inserted = false
+    for g in groups
+        # println(i,"∩",g," = ", i∩g)
+        if i∩g|>!isempty
+            # println(" > ",i,"∪",g," = ", i∪g)
+            for e in i
+                push!(g, e)
+            end
+            inserted = true
+            # println(groups)
         end
     end
+    if !inserted
+        push!(groups, i)
+    end
 end
+print("Part 2: ")
+groups|>length|>println
